@@ -28,8 +28,8 @@ public class BoardView {
                 int ch = scan.nextInt();
                 if (ch == 1) { create();
                 } else if (ch == 2) { read();
-                } else if (ch == 3) {
-                } else if (ch == 4) {
+                } else if (ch == 3) { update();
+                } else if (ch == 4) { delete();
                 } else {
                     System.out.println("[경고] 없는 기능 번호입니다.");
                 }
@@ -66,9 +66,33 @@ public class BoardView {
     public void read(){
         ArrayList<BoardDto> boards = bc.read();
         for(BoardDto board : boards){
-            System.out.printf("번호 : %3d , 작성일 : %s , 물품명 : %s , 가격 : %3d , 닉네임 : %s , 등록일 : %s , 판매여부 : %s , 연락처 : %s \n",
-                    board.getBno() , board.getDateTime() ,  board.getPname() , board.getPprice() , board.getWriter(), board.getDateTime(), board.getForsaleStatus(), board.getPhone() );
+            System.out.printf("번호 : %3d , 닉네임 : %s , 물품명 : %s ,물품설명 : %s, 가격 : %3d , 비밀번호 : %s , 연락처 : %s , 등록일 : %s , 판매여부 : %s \n",
+                    board.getBno() , board.getWriter(),  board.getPname() , board.getPcontent(), board.getPprice() , board.getPwd(), board.getPhone(), board.getDateTime(), board.getForsaleStatus());
         }
 
+    }
+
+    // [3] 물품 정보 수정(Update)
+    public void update(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("수정할 게시물 번호 : "); int bno = scan.nextInt();
+        System.out.println("수정할 내용 : "); String pcontent = scan.next();
+        boolean result = bc.update(bno,pcontent);
+        if(result){
+            System.out.println("[안내] 물품 정보 수정 완료");}
+        else{
+            System.out.println("[경고] 물품 정보 수정 실패 또는 없는 게시물 번호입니다.");
+        }
+    }
+
+    // [4] 등록 물품 삭제(Delete)
+    public void delete(){
+        System.out.println("삭제할 게시물 번호 : "); int bno = scan.nextInt();
+        boolean result = bc.delete(bno);
+        if(result){
+            System.out.println("[안내] 게시물 삭제 완료");
+        }else{
+            System.out.println("[경고] 게시물 삭제 실패 또는 없는 게시물 번호입니다.");
+        }
     }
 } // class END

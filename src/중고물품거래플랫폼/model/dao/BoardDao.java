@@ -91,5 +91,38 @@ public class BoardDao {
     return boards; // 리스트(배열) 반환한다.
     } // m END
 
+    // [3] 물품 정보 수정(Update)
+    public boolean update(int bno , String pcontent ) {
+        try {
+            String sql = "update board set pcontent = ? where bno = ? "; // sql 작성
+            PreparedStatement ps = conn.prepareStatement(sql); // 2] SQL 기재
+            ps.setString(1, pcontent);
+            ps.setInt(2, bno); // 3] SQL 매개변수
+            int count = ps.executeUpdate(); // 4] SQL 실행
+            if (count == 1) {
+                return true;
+            }else{return false;} // 실패
+        } catch (SQLException e) {
+            System.out.println("[시스템 오류] SQL 문법 문제 발생" + e);}
+            return false; // 실패
+        } // m END
 
+    // [4] 등록 물품 삭제(Delete)
+    public boolean delete(int bno){
+        try{
+            // 1] SQL 작성한다 ? 는 매개변수 값이 들어갈 자리
+            String sql = "delete from board where bno = ? ";
+            // 2] 연동된[conn] 인터페이스에 SQL 기재한다. + 일반예외
+            PreparedStatement ps = conn.prepareStatement(sql);
+            // 3] ? 와일드카드에 매개변수 대입, ps.setXXX (?순서번호 , 값);
+            ps.setInt(1,bno);
+            // 4] SQL 실행한다. 실행 후  반영된 레코드 수
+            int count = ps.executeUpdate();
+            // 5] 결과
+            if(count==1){return true;} // 삭제된 레코드 수 1개이면 성공
+            else{return false;} // 실패
+        }catch (SQLException e){
+            System.out.println("[시스템 오류] SQL 문법 문제 발생 : "+e);
+        }return false; // 실패
+    }
     }

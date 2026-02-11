@@ -26,4 +26,16 @@ public class BoardController {
         ArrayList<BoardDto> result = bd.read();
         return result;
     }
+
+    // [3] 물품 정보 수정(Update)
+    public boolean update(int bno,String pcontent){
+        boolean result = bd.update(bno,pcontent);
+    return result;}
+
+    // [4] 등록 물품 삭제(Delte)
+    public boolean delete(int bno){
+        boolean result = bd.delete(bno);
+        return result;
+    }
+
 }

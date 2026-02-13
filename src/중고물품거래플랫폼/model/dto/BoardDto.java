@@ -13,21 +13,11 @@ public class BoardDto {
     private String pwd;
     private String phone;
     private String dateTime;
-    private boolean forsale = true;
 
-
-
-    public BoardDto(int bno, String writer, String pname, String pcontent, int pprice, String pwd, String phone, String dateTime, boolean forsale) {
-        this.bno = bno;
-        this.writer = writer;
-        this.pname = pname;
-        this.pcontent = pcontent;
-        this.pprice = pprice;
-        this.pwd = pwd;
-        this.phone = phone;
-        this.dateTime = dateTime;
-        this.forsale = forsale;
+    // 객체 추가 생성
+    public BoardDto(int bno, String writer, String pname, String pcontent, int pprice, String pwd, String phone, String datetime, boolean forsale) {
     }
+
 
     public int getBno() {
         return bno;
@@ -100,6 +90,7 @@ public class BoardDto {
     public void setForsale(boolean forsale) {
         this.forsale = forsale;
     }
+
 
     // true false -> 판매중 판매완료 문자열로 변환시켜주는 메서드
 

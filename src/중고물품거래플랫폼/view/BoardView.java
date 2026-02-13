@@ -28,8 +28,8 @@ public class BoardView {
                 int ch = scan.nextInt();
                 if (ch == 1) { create();
                 } else if (ch == 2) { read();
-                } else if (ch == 3) { update();
-                } else if (ch == 4) { delete();
+                } else if (ch == 3) {
+                } else if (ch == 4) {
                 } else {
                     System.out.println("[경고] 없는 기능 번호입니다.");
                 }
@@ -84,6 +84,9 @@ public class BoardView {
             System.out.println("[경고] 물품 정보 수정 실패 또는 없는 게시물 번호입니다.");
         }
     }
+            System.out.printf("번호 : %3d , 작성일 : %s , 물품명 : %s , 가격 : %3d , 닉네임 : %s , 등록일 : %s , 판매여부 : %s , 연락처 : %s \n",
+                    board.getBno() , board.getDateTime() ,  board.getPname() , board.getPprice() , board.getWriter(), board.getDateTime(), board.getForsaleStatus(), board.getPhone() );
+        }
 
     // [4] 등록 물품 삭제(Delete)
     public void delete(){
